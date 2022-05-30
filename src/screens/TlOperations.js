@@ -23,9 +23,7 @@ function TlOperations() {
 
     useEffect(() => {
         sendBalance()
-    }, [])
-
-    console.log(stateBalance);
+    }, [stateDeposit, stateWithdraw])
 
     const [amountTake, setAmountTake] = useState(0)
     const handleTake = () => {
@@ -42,8 +40,6 @@ function TlOperations() {
     const handleWithdraw = () => {
         sendWithdraw(BigNumber.from(amountWithdraw))
     }
-
-    console.log(stateTake);
 
     return (
         <div className='row justify-content-center align-items-center mt-5'>
