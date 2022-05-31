@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { tlAddress, tlAbi, lotteryAbi, lotteryAddress } from "../Contracts/contracts.js"
 import TextField from "@mui/material/TextField";
 import ProgressButton from '../components/ProgressButton.js';
+import Chip from "@mui/material/Chip";
 
 const tlInterface = new utils.Interface(tlAbi)
 const tlContract = new Contract(tlAddress, tlInterface)
@@ -45,7 +46,7 @@ function TicketBuyAndTransfer() {
     return (
         <div className='row justify-content-center align-items-center mt-5'>
             <div className='col-8'>
-                <h4 className='mb-5'><b>Lottery No {stateLotteryNo && stateLotteryNo.transaction ? stateLotteryNo.transaction.toNumber() : "..."}</b></h4>
+                <Chip className="mb-5" label={<span>Lottery No: <b>{stateLotteryNo && stateLotteryNo.transaction ? stateLotteryNo.transaction.toNumber() : "..."}</b></span>} variant="outlined" />
                 <div className='row justify-content-center align-items-center mb-5'>
                     <TextField className='mb-2' type="number" label="Random Number" value={randomNumber} onChange={e => setRandomNumber(e.target.value)} />
                     <ProgressButton onClick={handleBuyTicket} text="Buy Ticket" state={stateBuyTicket} />

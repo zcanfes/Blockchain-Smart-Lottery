@@ -5,6 +5,7 @@ import { useContractFunction, useContractCall } from "@usedapp/core"
 import { useEffect, useState } from "react";
 import { tlAddress, tlAbi, lotteryAbi, lotteryAddress } from "../Contracts/contracts.js"
 import TextField from "@mui/material/TextField";
+import Chip from "@mui/material/Chip";
 import ProgressButton from '../components/ProgressButton.js';
 
 const tlInterface = new utils.Interface(tlAbi)
@@ -44,8 +45,7 @@ function TlOperations() {
     return (
         <div className='row justify-content-center align-items-center mt-5'>
             <div className='col-8'>
-                <h4 className='mb-5'><b>Balance: {stateBalance && stateBalance.transaction ? stateBalance.transaction.toNumber() : "..."}</b></h4>
-
+                <Chip className="mb-5" label={<span>Balance: <b>{stateBalance && stateBalance.transaction ? stateBalance.transaction.toNumber() : "..."}</b></span>} variant="outlined" />
                 <div className='row justify-content-center align-items-center mb-5'>
                     <TextField className='mb-2' type="number" label="Amount" value={amountTake} onChange={e => setAmountTake(e.target.value)} />
                     <ProgressButton onClick={handleTake} text="Take TL" state={stateTake} />
