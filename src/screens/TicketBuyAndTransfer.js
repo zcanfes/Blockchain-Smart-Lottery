@@ -29,12 +29,17 @@ function TicketBuyAndTransfer() {
         sendLotteryNo(epochTimeInSeconds)
     }, [])
 
+    useEffect(() => {
+        if (stateLotteryNo && stateLotteryNo.transaction && stateLotteryNo.transaction.toNumber()) {
+            sendLastOwnedTicketNo(stateLotteryNo.transaction.toNumber())
+        }
+    }, [stateLotteryNo, stateBuyTicket])
+
     const [randomNumber, setRandomNumber] = useState(0)
     const handleBuyTicket = async () => {
         const hashedRandomNumber = utils.solidityKeccak256(["uint256"], [randomNumber])
 
         await sendBuyTicket(hashedRandomNumber)
-        await sendLastOwnedTicketNo(stateLotteryNo.transaction.toNumber())
     }
 
     const [to, setTo] = useState("")
@@ -46,11 +51,12 @@ function TicketBuyAndTransfer() {
     return (
         <div className='row justify-content-center align-items-center mt-5'>
             <div className='col-8'>
-                <Chip className="mb-5" label={<span>Lottery No: <b>{stateLotteryNo && stateLotteryNo.transaction ? stateLotteryNo.transaction.toNumber() : "..."}</b></span>} variant="outlined" />
+                <Chip className="mb-5 me-1" label={<span>Lottery No: <b>{stateLotteryNo && stateLotteryNo.transaction ? stateLotteryNo.transaction.toNumber() : "..."}</b></span>} variant="outlined" />
+                <Chip className="mb-5" label={<span>Last Owned Ticket Id: <b>{stateLastOwnedTicketNo && stateLastOwnedTicketNo.transaction ? stateLastOwnedTicketNo.transaction[0].toNumber() : "..."}</b></span>} variant="outlined" />
+
                 <div className='row justify-content-center align-items-center mb-5'>
                     <TextField className='mb-2' type="number" label="Random Number" value={randomNumber} onChange={e => setRandomNumber(e.target.value)} />
                     <ProgressButton onClick={handleBuyTicket} text="Buy Ticket" state={stateBuyTicket} />
-                    <p className='mt-3'><b>{stateLastOwnedTicketNo && stateLastOwnedTicketNo.transaction && `Ticket Id: ${stateLastOwnedTicketNo.transaction[0].toNumber()}`}</b></p>
                 </div>
                 <div className='row justify-content-center align-items-center mb-5'>
                     <TextField className='mb-2' label="To" value={to} onChange={e => setTo(e.target.value)} />
