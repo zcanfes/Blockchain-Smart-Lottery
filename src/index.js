@@ -4,13 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter } from "react-router-dom";
-import { DAppProvider, TestBNB } from '@usedapp/core'
+import { DAppProvider, AvalancheTestnet } from '@usedapp/core'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const config = {
-    readOnlyChainId: TestBNB.chainId,
+    readOnlyChainId: AvalancheTestnet.chainId,
     readOnlyUrls: {
-        [TestBNB.chainId]: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+        [AvalancheTestnet.chainId]: 'https://api.avax-test.network/ext/bc/C/rpc',
     },
 }
 

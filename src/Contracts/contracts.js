@@ -1,5 +1,5 @@
-export const tlAddress = "0x5f4989780f4d26ce8FB028d4F31397Ab7b629171";
-export const lotteryAddress = "0xaAF7B94EEF02d0f9e3e05fEe091023Ab73d70cEd";
+export const tlAddress = "0xBF8aD0A53DD00007912f192a85D6c5f74f1f7d49";
+export const lotteryAddress = "0x8e61013AA57C56d592ea9C945656c81E7795E5A7";
 
 export const tlAbi = [
     {
