@@ -1,1 +1,3 @@
-# smart-lottery
+# Smart Lottery
+
+The objective of this project was to implement an autonomous decentralized lottery using solidity and smart contracts. A lottery round takes two weeks and is divided into two stages. After the previous lottery is completed, a new lottery round should begin. ERC20 token contract is used to implement TL tokens and ERC721 token contract is used to implement tickets. The tickets should be transferrable and should be represented as tokens. To achieve these tasks, various functions should be implemented and tested. Achieving an autonomous system is challenging and thus requires inspecting details and calculating possible failures in the system.
